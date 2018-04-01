@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+
+    <!-- My Colors palette -->
+    <color name="black">#000000</color>
+    <color name="jet">#222222</color>
+    <color name="oil">#333333</color>
+    <color name="monsoon">#777777</color>
+    <color name="jumbo">#888888</color>
+    <color name="aluminum">#999999</color>
+    <color name="base">#AAAAAA</color>
+    <color name="iron">#CCCCCC</color>
+    <color name="light">#EEEEEE</color>
+    <color name="background">#fafafa</color>
+    <color name="white">#FFFFFF</color>
+
+    <color name="transparent">#00000000</color>
+    <!--/Palette-->
+
+
+    <color name="red">#FF0000</color>
+    <color name="blue">#1D1AB2</color>
+    <color name="green">#00C80D</color>
+    <color name="yellow">#FECF00</color>
+    <color name="brown">#7D4405</color>
+    <color name="grey">#7B7B7B</color>
+    <color name="purple">#810051</color>
+    <color name="pink">#E339A4</color>
+
+    <!--Themes-->
+    <!-- Red-->
+    <color name="redColorPrimary">#d32f2f</color>
+    <color name="redColorPrimaryDark">#b71c1c</color>
+    <color name="redColorAccent">#ef5350</color>
+
+    <!--Blue-->
+    <color name="blueColorPrimary">#1B44CA</color>
+    <color name="blueColorPrimaryDark">#354C98</color>
+    <color name="blueColorAccent">#7891E5</color>
+
+    <!--Green-->
+    <color name="greenColorPrimary">#43A047</color>
+    <color name="greenColorPrimaryDark">#2E7D32</color>
+    <color name="greenColorAccent">#81C784</color>
+
+    <!-- Yellow -->
+    <color name="yellowColorPrimary">#FB8C00</color>
+    <color name="yellowColorPrimaryDark">#EF6C00</color>
+    <color name="yellowColorAccent">#FFCC80</color>
+
+    <!--Brown-->
+    <color name="brownColorPrimary">#654227</color>
+    <color name="brownColorPrimaryDark">#4C3829</color>
+    <color name="brownColorAccent">#B2835F</color>
+
+    <!--Grey-->
+    <color name="greyColorPrimary">#BFBFBF</color>
+    <color name="greyColorPrimaryDark">#A6A6A6</color>
+    <color name="greyColorAccent">#DEDEDE</color>
+
+    <!--White-->
+    <color name="whiteColorPrimary">#FFFFFF</color>
+    <color name="whiteColorPrimaryDark">#CDCDCD</color>
+    <color name="whiteColorAccent">#E6E6E6</color>
+
+    <!--Purple-->
+    <color name="purpleColorPrimary">#9c27b0</color>
+    <color name="purpleColorPrimaryDark">#7b1fa2</color>
+    <color name="purpleColorAccent">#ba68c8</color>
+
+    <!--Pink-->
+    <color name="pinkColorPrimary">#F180C7</color>
+    <color name="pinkColorPrimaryDark">#E355AE</color>
+    <color name="pinkColorAccent">#F19ED2</color>
+    <!--/themes-->
+
+
+
+    <color name="placeholder_bg">#dddddd</color>
+    <color name="item_name">#0c0c0c</color>
+    <color name="description">#1a1a1a</color>
+    <color name="chef">#777</color>
+    <color name="timestamp">#777</color>
+
+
+    <color name="year">#999999</color>
+    <color name="title">#222222</color>
+    <color name="contactsDatabaseColorPrimary">#43A047</color>
+
+    <color name="filterListViewColorPrimary">#FB8C00</color>
+
+    <color name="locationColorPrimary">#d32f2f</color>
+    <color name="player_background">#4a4a4a</color>
+
+
+    <color name="matBackgroundLight">#F4F4F6</color>
+    <color name="matBackgroundDark">#33343B</color>
+</resources>

@@ -1,0 +1,139 @@
+<resources>
+
+    <!--Splash-->
+    <style name="SplashTheme" parent="SplashTheme.Base"/>
+
+    <style name="SplashTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+<!--
+
+    &lt;!&ndash; Specific Feed activity theme &ndash;&gt;
+    <style name="FeedActivityThemeLight" parent="ActivityTheme.Primary.Base.Light">
+        <item name="android:windowBackground">@color/matBackgroundLight</item>
+    </style>
+    <style name="FeedActivityThemeDark" parent="ActivityTheme.Primary.Base.Dark">
+        <item name="android:windowBackground">@color/matBackgroundDark</item>
+    </style>
+
+    &lt;!&ndash; Light base activity theme &ndash;&gt;
+    <style name="ActivityTheme.Primary.Base.Light" parent="Theme.AppCompat.NoActionBar">
+        <item name="primaryTextColor">#F4F4F6</item>
+        <item name="secondaryTextColor">#96F4F4F6</item>
+        <item name="backgroundCardColor">#FFFF</item>
+        <item name="dividerColor">#F2F2F3</item>
+    </style>
+    &lt;!&ndash; Dark base activity theme &ndash;&gt;
+    <style name="ActivityTheme.Primary.Base.Dark"    parent="Theme.AppCompat.NoActionBar">
+        <item name="primaryTextColor">#33343B</item>
+        <item name="secondaryTextColor">#8033343B</item>
+        <item name="backgroundCardColor">#28292e</item>
+        <item name="dividerColor">#F2F2F3</item>
+    </style>
+-->
+
+
+    //Red Theme
+    <style name="RedTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="colorPrimary">@color/redColorPrimary</item>
+        <item name="colorPrimaryDark">@color/redColorPrimaryDark</item>
+        <item name="colorAccent">@color/redColorAccent</item>
+    </style>
+
+
+    //Blue Theme
+    <style name="BlueTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="colorPrimary">@color/blueColorPrimary</item>
+        <item name="colorPrimaryDark">@color/blueColorPrimaryDark</item>
+        <item name="colorAccent">@color/blueColorAccent</item>
+    </style>
+
+    //Green Theme
+    <style name="GreenTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="colorPrimary">@color/greenColorPrimary</item>
+        <item name="colorPrimaryDark">@color/greenColorPrimaryDark</item>
+        <item name="colorAccent">@color/greenColorAccent</item>
+    </style>
+
+    //Yellow Theme
+    <style name="YellowTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="colorPrimary">@color/yellowColorPrimary</item>
+        <item name="colorPrimaryDark">@color/yellowColorPrimaryDark</item>
+        <item name="colorAccent">@color/yellowColorAccent</item>
+    </style>
+
+    //Brown Theme
+    <style name="BrownTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="colorPrimary">@color/brownColorPrimary</item>
+        <item name="colorPrimaryDark">@color/brownColorPrimaryDark</item>
+        <item name="colorAccent">@color/brownColorAccent</item>
+    </style>
+
+    //Grey Theme
+    <style name="GreyTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="colorPrimary">@color/greyColorPrimary</item>
+        <item name="colorPrimaryDark">@color/greyColorPrimaryDark</item>
+        <item name="colorAccent">@color/greyColorAccent</item>
+    </style>
+
+    //White Theme
+    <style name="WhiteTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="colorPrimary">@color/whiteColorPrimary</item>
+        <item name="colorPrimaryDark">@color/whiteColorPrimaryDark</item>
+        <item name="colorAccent">@color/whiteColorAccent</item>
+    </style>
+
+    //Purple Theme
+    <style name="PurpleTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="colorPrimary">@color/purpleColorPrimary</item>
+        <item name="colorPrimaryDark">@color/purpleColorPrimaryDark</item>
+        <item name="colorAccent">@color/purpleColorAccent</item>
+    </style>
+
+    //Pink Theme
+    <style name="PinkTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="colorPrimary">@color/pinkColorPrimary</item>
+        <item name="colorPrimaryDark">@color/pinkColorPrimaryDark</item>
+        <item name="colorAccent">@color/pinkColorAccent</item>
+    </style>
+
+
+</resources>

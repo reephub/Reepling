@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <array name="user_favorite_color">
+        <item name="red">@color/red</item>
+        <item name="blue">@color/blue</item>
+        <item name="green">@color/green</item>
+        <item name="yellow">@color/yellow</item>
+        <item name="brown">@color/brown</item>
+        <item name="grey">@color/grey</item>
+        <item name="white">@color/white</item>
+        <item name="purple">@color/purple</item>
+        <item name="pink">@color/pink</item>
+    </array>
+
+
+    <array name="themePicker">
+        <item>@style/RedTheme</item>
+        <item>@style/BlueTheme</item>
+        <item>@style/GreenTheme</item>
+        <item>@style/YellowTheme</item>
+        <item>@style/BrownTheme</item>
+        <item>@style/GreyTheme</item>
+        <item>@style/WhiteTheme</item>
+        <item>@style/PurpleTheme</item>
+        <item>@style/PinkTheme</item>
+    </array>
+
+</resources>

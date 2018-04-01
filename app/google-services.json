@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "630672798735",
+    "firebase_url": "https://reepling-aa683.firebaseio.com",
+    "project_id": "reepling-aa683",
+    "storage_bucket": "reepling-aa683.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:630672798735:android:777766cb689d7f7f",
+        "android_client_info": {
+          "package_name": "com.reepling"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "630672798735-54f2h9jplq4tgqhs27pn7885oettffel.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.reepling",
+            "certificate_hash": "03bf71426a9058885a3f762507ac821744a6d266"
+          }
+        },
+        {
+          "client_id": "630672798735-o3e05n7kpmn0cpc4vqdv3n4ape4mc7fq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3NDo_mPFvvl1_cKIjlIyaFXr-_NnHwdw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "630672798735-o3e05n7kpmn0cpc4vqdv3n4ape4mc7fq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

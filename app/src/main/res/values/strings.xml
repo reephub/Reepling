@@ -1,0 +1,71 @@
+<resources>
+    <string name="app_name">Reepling</string>
+
+
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+
+    <string name="action_user_profile">Profile</string>
+    <string name="action_search">Search</string>
+    <string name="search_hint">Rechercher un utilisateur</string>
+
+
+    <!--Login & Inscription-->
+    <string name="hint_name">Nom</string>
+    <string name="hint_first_name">Prénom</string>
+    <string name="hint_email">E-mail</string>
+    <string name="hint_password">Mot de passe</string>
+    <string name="hint_confirm_password">Confirmer le mot de passe</string>
+    <string name="btn_connect">Se connecter</string>
+    <string name="hint_phone">Téléphone</string>
+    <string name="btn_sign_up">S\'inscrire</string>
+    <string name="btn_cancel">Annuler</string>
+    <string name="btn_update">Mettre à jour</string>
+    <string name="text_sign_up_request"><u>Vous n\'avez pas de compte? \nInscrivez vous ! Cliquez ici</u></string>
+    <string name="text_sign_up_conditions"><u>Lire les conditions générales d\'utilisation</u></string>
+    <string name="text_sign_up_accept_conditions">J\'accepte les conditions générales d\'utilisation</string>
+    <string name="err_msg_name">Entrez un nom valide</string>
+    <string name="err_msg_first_name">Entrez un prénom valide</string>
+    <string name="err_msg_phone">Entrez un numéro de téléphone valide</string>
+    <string name="err_msg_email">Entrez une adresse mail valide</string>
+    <string name="err_msg_password">Entrez un mot de passe valide</string>
+    <string name="dialog_sign_up_message">Voulez-vous vraiment annuler votre inscription?</string>
+    <string name="dialog_sign_up_title">Etes-vous sûr?</string>
+
+
+    <!-- Tabs Fragments -->
+    <!--Creation-->
+    <string name="tabs_text_creation">Création</string>
+    <!--Listening-->
+    <string name="tabs_text_listening">Ecoute</string>
+    <string name="back"><![CDATA[<]]></string>
+    <string name="rewind"><![CDATA[<<]]></string>
+    <string name="forward"><![CDATA[>>]]></string>
+    <string name="play"><![CDATA[>]]></string>
+    <string name="pause">||</string>
+    <!--Community-->
+    <string name="tabs_text_community">Communauté</string>
+
+
+    <!--Profile-->
+    <string name="txt_application_settings">Paramètres de l\'application</string>
+    <string name="txt_modify_profile">Modification du profil</string>
+    <string name="txt_records_number">Nombre d\'enregistrements</string>
+    <string name="txt_likes_number">Nombre de likes</string>
+    <string name="txt_offer_type">Abonnement \"free/premium\"</string>
+    <string name="txt_help">Aide</string>
+    <string name="txt_legal_notice">Mentions légales</string>
+    <string name="txt_disconnect">Se déconnecter</string>
+    <string name="dialog_profile_disconnection_title">Déconnexion?</string>
+    <string name="dialog_profile_disconnection_message">Voulez-vous vraiment vous déconnecter?</string>
+    <string name="disconnected">Vous avez bien été déconnecté</string>
+
+
+    <!--Template texts-->
+    <string name="template_login_text">Login</string>
+    <string name="template_signin_text">SignIn</string>
+    <string name="template_mainactivity_text">MainActivity</string>
+    <string name="template_adactivity_text">Ad Mob</string>
+
+
+</resources>

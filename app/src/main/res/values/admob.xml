@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- TODO - add your ad unit Ids -->
+    <!-- AdMob ad unit IDs -->
+    <string name="admob_app_id">ca-app-pub-2216496940806622~6926739077</string>
+    <string name="interstitial_banner_id">ca-app-pub-2216496940806622/8463182023</string>
+    <string name="interstitial_full_screen_id">ca-app-pub-2216496940806622/6707247225</string>
+
+    <string name="google_test_banner_id">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="google_test_full_screen_id">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="google_test_rewarded_video_id">ca-app-pub-3940256099942544/5224354917</string>
+    <string name="google_test_native_advanced_id">	ca-app-pub-3940256099942544/2247696110</string>
+
+</resources>
