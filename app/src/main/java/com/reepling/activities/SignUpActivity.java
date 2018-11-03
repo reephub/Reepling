@@ -196,6 +196,7 @@ public class SignUpActivity extends AppCompatActivity {
         return true;
     }
 
+
     private boolean validatePhone() {
         if (inputPhone.getText().toString().trim().isEmpty() || inputPhone.getText().toString().length() < 10) {
             inputLayoutPhone.setError(getString(R.string.err_msg_phone));

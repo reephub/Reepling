@@ -28,7 +28,6 @@ import com.karumi.dexter.listener.PermissionGrantedResponse;
 import com.karumi.dexter.listener.PermissionRequest;
 import com.karumi.dexter.listener.PermissionRequestErrorListener;
 import com.karumi.dexter.listener.single.PermissionListener;
-import com.reepling.Manifest;
 import com.reepling.R;
 import com.reepling.fragments.adapter.ListeningSongsAdapter;
 import com.reepling.utils.SongsManager;
@@ -46,7 +45,7 @@ import butterknife.ButterKnife;
  * Created by Michaël on 08/02/2018.
  */
 
-public class ListeningFragment extends Fragment implements ListeningSongsAdapter.ListeningSongsAdapterListener, MediaPlayer.OnCompletionListener, SeekBar.OnSeekBarChangeListener{
+public class ListeningFragment extends Fragment implements ListeningSongsAdapter.ListeningSongsAdapterListener, MediaPlayer.OnCompletionListener, SeekBar.OnSeekBarChangeListener {
 
     private static final String TAG = ListeningFragment.class.getSimpleName();
 
@@ -54,18 +53,27 @@ public class ListeningFragment extends Fragment implements ListeningSongsAdapter
 
     //Views
     // All player buttons
-    @BindView(R.id.btnPlay) ImageButton btnPlay;
-    @BindView(R.id.btnForward) ImageButton btnForward;
-    @BindView(R.id.btnBackward) ImageButton btnBackward;
-    @BindView(R.id.btnNext) ImageButton btnNext;
-    @BindView(R.id.btnPrevious) ImageButton btnPrevious;
+    @BindView(R.id.btnPlay)
+    ImageButton btnPlay;
+    @BindView(R.id.btnForward)
+    ImageButton btnForward;
+    @BindView(R.id.btnBackward)
+    ImageButton btnBackward;
+    @BindView(R.id.btnNext)
+    ImageButton btnNext;
+    @BindView(R.id.btnPrevious)
+    ImageButton btnPrevious;
     /*@Nullable @BindView(R.id.btnPlaylist) ImageButton btnPlaylist;
     @Nullable @BindView(R.id.btnRepeat) ImageButton btnRepeat;
     @Nullable @BindView(R.id.btnShuffle) ImageButton btnShuffle;*/
-    @BindView(R.id.songProgressBar) SeekBar songProgressBar;
-    @BindView(R.id.songTitle) TextView songTitleLabel;
-    @BindView(R.id.songCurrentDurationLabel) TextView songCurrentDurationLabel;
-    @BindView(R.id.songTotalDurationLabel) TextView songTotalDurationLabel;
+    @BindView(R.id.songProgressBar)
+    SeekBar songProgressBar;
+    @BindView(R.id.songTitle)
+    TextView songTitleLabel;
+    @BindView(R.id.songCurrentDurationLabel)
+    TextView songCurrentDurationLabel;
+    @BindView(R.id.songTotalDurationLabel)
+    TextView songTotalDurationLabel;
 
     @BindView(R.id.playlistSongsRecyclerView)
     RecyclerView songsRecyclerView;
@@ -73,7 +81,7 @@ public class ListeningFragment extends Fragment implements ListeningSongsAdapter
     private ListeningSongsAdapter adapter;
 
     // Media Player
-    private  MediaPlayer mp;
+    private MediaPlayer mp;
     // Handler to update UI timer, progress bar etc,.
     private Handler mHandler = new Handler();
     private SongsManager songManager;
@@ -101,7 +109,7 @@ public class ListeningFragment extends Fragment implements ListeningSongsAdapter
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView =  inflater.inflate(R.layout.fragment_listening, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_listening, container, false);
         ButterKnife.bind(this, rootView);
         return rootView;
     }
@@ -173,7 +181,7 @@ public class ListeningFragment extends Fragment implements ListeningSongsAdapter
                 }).check();
     }
 
-    public void setUi(){
+    public void setUi() {
 
         // Adding menuItems to ListView
         adapter = new ListeningSongsAdapter(mContext, getSongsFromFiles(), this);
@@ -185,7 +193,7 @@ public class ListeningFragment extends Fragment implements ListeningSongsAdapter
         songsRecyclerView.setAdapter(adapter);
     }
 
-    public ArrayList<HashMap<String, String>> getSongsFromFiles(){
+    public ArrayList<HashMap<String, String>> getSongsFromFiles() {
 
         ArrayList<HashMap<String, String>> songsListData = new ArrayList<HashMap<String, String>>();
 
@@ -204,7 +212,7 @@ public class ListeningFragment extends Fragment implements ListeningSongsAdapter
         return songsListData;
     }
 
-    public void setListeners(){
+    public void setListeners() {
 
         /**
          * Play button click event
@@ -216,15 +224,15 @@ public class ListeningFragment extends Fragment implements ListeningSongsAdapter
             @Override
             public void onClick(View arg0) {
                 // check for already playing
-                if(mp.isPlaying()){
-                    if(mp!=null){
+                if (mp.isPlaying()) {
+                    if (mp != null) {
                         mp.pause();
                         // Changing button image to play button
                         btnPlay.setImageResource(R.drawable.btn_play);
                     }
-                }else{
+                } else {
                     // Resume song
-                    if(mp!=null){
+                    if (mp != null) {
                         mp.start();
                         // Changing button image to pause button
                         btnPlay.setImageResource(R.drawable.btn_pause);
@@ -246,10 +254,10 @@ public class ListeningFragment extends Fragment implements ListeningSongsAdapter
                 // get current song position
                 int currentPosition = mp.getCurrentPosition();
                 // check if seekForward time is lesser than song duration
-                if(currentPosition + seekForwardTime <= mp.getDuration()){
+                if (currentPosition + seekForwardTime <= mp.getDuration()) {
                     // forward song
                     mp.seekTo(currentPosition + seekForwardTime);
-                }else{
+                } else {
                     // forward to end position
                     mp.seekTo(mp.getDuration());
                 }
@@ -268,10 +276,10 @@ public class ListeningFragment extends Fragment implements ListeningSongsAdapter
                 // get current song position
                 int currentPosition = mp.getCurrentPosition();
                 // check if seekBackward time is greater than 0 sec
-                if(currentPosition - seekBackwardTime >= 0){
+                if (currentPosition - seekBackwardTime >= 0) {
                     // forward song
                     mp.seekTo(currentPosition - seekBackwardTime);
-                }else{
+                } else {
                     // backward to starting position
                     mp.seekTo(0);
                 }
@@ -289,10 +297,10 @@ public class ListeningFragment extends Fragment implements ListeningSongsAdapter
             @Override
             public void onClick(View arg0) {
                 // check if next song is there or not
-                if(currentSongIndex < (songsList.size() - 1)){
+                if (currentSongIndex < (songsList.size() - 1)) {
                     playSong(currentSongIndex + 1);
                     currentSongIndex = currentSongIndex + 1;
-                }else{
+                } else {
                     // play first song
                     playSong(0);
                     currentSongIndex = 0;
@@ -310,10 +318,10 @@ public class ListeningFragment extends Fragment implements ListeningSongsAdapter
 
             @Override
             public void onClick(View arg0) {
-                if(currentSongIndex > 0){
+                if (currentSongIndex > 0) {
                     playSong(currentSongIndex - 1);
                     currentSongIndex = currentSongIndex - 1;
-                }else{
+                } else {
                     // play last song
                     playSong(songsList.size() - 1);
                     currentSongIndex = songsList.size() - 1;
@@ -326,12 +334,12 @@ public class ListeningFragment extends Fragment implements ListeningSongsAdapter
     /**
      * Receiving song index from playlist view
      * and play the song
-     * */
+     */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(resultCode == 100){
+        if (resultCode == 100) {
             currentSongIndex = data.getExtras().getInt("songIndex");
             // play selected song
             playSong(currentSongIndex);
@@ -346,27 +354,27 @@ public class ListeningFragment extends Fragment implements ListeningSongsAdapter
 
     @Override
     public void onSongSelected(int position) {
-        playSong( position );
+        playSong(position);
     }
 
     @Override
     public void onCompletion(MediaPlayer mp) {
 
         // check for repeat is ON or OFF
-        if(isRepeat){
+        if (isRepeat) {
             // repeat is on play same song again
             playSong(currentSongIndex);
-        } else if(isShuffle){
+        } else if (isShuffle) {
             // shuffle is on - play a random song
             Random rand = new Random();
             currentSongIndex = rand.nextInt((songsList.size() - 1) - 0 + 1) + 0;
             playSong(currentSongIndex);
-        } else{
+        } else {
             // no repeat or shuffle ON - play next song
-            if(currentSongIndex < (songsList.size() - 1)){
+            if (currentSongIndex < (songsList.size() - 1)) {
                 playSong(currentSongIndex + 1);
                 currentSongIndex = currentSongIndex + 1;
-            }else{
+            } else {
                 // play first song
                 playSong(0);
                 currentSongIndex = 0;
@@ -376,9 +384,10 @@ public class ListeningFragment extends Fragment implements ListeningSongsAdapter
 
     /**
      * Function to play a song
+     *
      * @param songIndex - index of song
-     * */
-    public void  playSong(int songIndex){
+     */
+    public void playSong(int songIndex) {
         // Play song
         try {
             mp.reset();
@@ -410,26 +419,26 @@ public class ListeningFragment extends Fragment implements ListeningSongsAdapter
 
     /**
      * Update timer on seekbar
-     * */
+     */
     public void updateProgressBar() {
         mHandler.postDelayed(mUpdateTimeTask, 100);
     }
 
     /**
      * Background Runnable thread
-     * */
+     */
     private Runnable mUpdateTimeTask = new Runnable() {
         public void run() {
             long totalDuration = mp.getDuration();
             long currentDuration = mp.getCurrentPosition();
 
             // Displaying Total Duration time
-            songTotalDurationLabel.setText(""+utils.milliSecondsToTimer(totalDuration));
+            songTotalDurationLabel.setText("" + utils.milliSecondsToTimer(totalDuration));
             // Displaying time completed playing
-            songCurrentDurationLabel.setText(""+utils.milliSecondsToTimer(currentDuration));
+            songCurrentDurationLabel.setText("" + utils.milliSecondsToTimer(currentDuration));
 
             // Updating progress bar
-            int progress = (int)(utils.getProgressPercentage(currentDuration, totalDuration));
+            int progress = (int) (utils.getProgressPercentage(currentDuration, totalDuration));
             //Log.d("Progress", ""+progress);
             songProgressBar.setProgress(progress);
 
@@ -449,7 +458,7 @@ public class ListeningFragment extends Fragment implements ListeningSongsAdapter
 
     /**
      * When user starts moving the progress handler
-     * */
+     */
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
         // remove message Handler from updating progress bar
@@ -458,7 +467,7 @@ public class ListeningFragment extends Fragment implements ListeningSongsAdapter
 
     /**
      * When user stops moving the progress hanlder
-     * */
+     */
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
         mHandler.removeCallbacks(mUpdateTimeTask);
