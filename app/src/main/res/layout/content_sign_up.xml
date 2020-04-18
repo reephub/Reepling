@@ -28,7 +28,7 @@
         android:padding="@dimen/activity_padding">
 
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_layout_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -40,9 +40,9 @@
                 android:singleLine="true"
                 android:inputType="textCapWords"
                 android:hint="@string/hint_name" />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_layout_first_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -54,10 +54,10 @@
                 android:singleLine="true"
                 android:inputType="textCapWords"
                 android:hint="@string/hint_first_name" />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_layout_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -69,9 +69,9 @@
                 android:singleLine="true"
                 android:inputType="phone"
                 android:hint="@string/hint_phone" />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_layout_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -83,9 +83,9 @@
                 android:singleLine="true"
                 android:inputType="textEmailAddress"
                 android:hint="@string/hint_email" />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_layout_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -97,10 +97,10 @@
                 android:singleLine="true"
                 android:inputType="textPassword"
                 android:hint="@string/hint_password" />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-        <android.support.design.widget.TextInputLayout
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/input_layout_confirm_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -112,9 +112,9 @@
                 android:singleLine="true"
                 android:inputType="textPassword"
                 android:hint="@string/hint_confirm_password" />
-        </android.support.design.widget.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <android.support.v7.widget.AppCompatSpinner
+        <androidx.appcompat.widget.AppCompatSpinner
             android:id="@+id/spinner_sign_up_country"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -129,7 +129,7 @@
             android:textColor="@color/colorPrimaryDark"
             android:layout_margin="@dimen/activity_padding_small"/>
 
-        <android.support.v7.widget.AppCompatCheckBox
+        <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/checkbox_sign_up"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

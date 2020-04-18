@@ -1,13 +1,14 @@
 package com.reepling.adapters;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.reepling.R;
 import com.reepling.model.Movie;
@@ -19,7 +20,8 @@ import java.util.List;
 /**
  * Created by michael on 25/01/2016.
  */
-public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyViewHolder> implements Filterable{
+public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MyViewHolder>
+        implements Filterable{
 
     private static final String TAG = MoviesAdapter.class.getSimpleName();
 

@@ -1,10 +1,11 @@
 package com.reepling.utils;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
+
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 
 import com.reepling.app.AppCompatPreferenceActivity;
 
@@ -20,7 +21,7 @@ public class ActivityLauncher {
         this.context = context;
     }
 
-    public void Activity(Context context, Class<? extends Activity> aimedClass){
+    public void Activity(Context context, Class<? extends AppCompatActivity> aimedClass){
         launchActivity(context, aimedClass);
     }
 

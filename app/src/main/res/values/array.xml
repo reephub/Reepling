@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-
     <array name="user_favorite_color">
         <item name="red">@color/red</item>
         <item name="blue">@color/blue</item>

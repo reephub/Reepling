@@ -3,13 +3,13 @@ package com.reepling.activities;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
-import android.support.design.widget.TextInputLayout;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatCheckBox;
-import android.support.v7.widget.AppCompatSpinner;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.Nullable;
+import com.google.android.material.textfield.TextInputLayout;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.AppCompatCheckBox;
+import androidx.appcompat.widget.AppCompatSpinner;
+import androidx.appcompat.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 
 import com.reepling.R;
+import com.reepling.app.BaseReeplingActivity;
 import com.reepling.utils.ActivityLauncher;
 
 import butterknife.BindView;
@@ -33,7 +34,7 @@ import butterknife.OnClick;
  * Created by Michaël on 08/02/2018.
  */
 
-public class SignUpActivity extends AppCompatActivity {
+public class SignUpActivity extends BaseReeplingActivity {
 
     private static final String TAG = SignUpActivity.class.getSimpleName();
 

@@ -1,14 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.TransitionActivity">
+
+    <include
+        layout="@layout/toolbar"
+        app:layout_constraintBottom_toTopOf="@id/buttons_linear_container"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <LinearLayout
+        android:id="@+id/buttons_linear_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/activity_padding_big"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:layout_margin="16dp"
-        android:gravity="center">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,7 +35,7 @@
                 android:id="@+id/button_template_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/template_login_text"/>
+                android:text="@string/template_login_text" />
 
         </LinearLayout>
 
@@ -35,7 +50,7 @@
                 android:id="@+id/button_template_signin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/template_signin_text"/>
+                android:text="@string/template_signin_text" />
 
         </LinearLayout>
 
@@ -50,7 +65,7 @@
                 android:id="@+id/button_template_mainactivity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/template_mainactivity_text"/>
+                android:text="@string/template_mainactivity_text" />
 
         </LinearLayout>
 
@@ -65,10 +80,10 @@
                 android:id="@+id/button_template_ad_activity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/template_adactivity_text"/>
+                android:text="@string/template_adactivity_text" />
 
         </LinearLayout>
 
     </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

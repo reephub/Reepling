@@ -1,19 +1,20 @@
 package com.reepling.activities;
 
 import android.os.Bundle;
-import android.support.constraint.ConstraintLayout;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.view.MenuItemCompat;
+import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.tabs.TabLayout;
 import com.reepling.R;
-import com.reepling.app.MyAppCompatActivity;
+import com.reepling.app.BaseReeplingActivity;
 import com.reepling.fragments.CommunityFragment;
 import com.reepling.fragments.CreationFragment;
 import com.reepling.fragments.ListeningFragment;
@@ -24,7 +25,7 @@ import com.reepling.utils.Utils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseReeplingActivity {
 
     //TAG
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -79,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
          */
         final MenuItem profileUserImageItem = menu.findItem(R.id.action_user);
 
-        ConstraintLayout rootView =  (ConstraintLayout) profileUserImageItem.getActionView();
+        ConstraintLayout rootView =  (ConstraintLayout) MenuItemCompat.getActionView(profileUserImageItem);
 
         rootView.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

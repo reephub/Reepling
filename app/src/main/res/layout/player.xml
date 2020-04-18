@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent" 
     android:background="#4a4a4a"> 
@@ -32,7 +33,7 @@
             android:id="@+id/btnPlaylist"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:src="@drawable/btn_playlist"
+            app:srcCompat="@drawable/btn_playlist"
             android:background="@null"/>
     </LinearLayout>
     
@@ -47,7 +48,7 @@
         android:layout_below="@id/player_header_bg">
     	<ImageView android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/adele"/>    
+        app:srcCompat="@drawable/adele"/>
     </LinearLayout>
     
     <!-- Player Footer -->
@@ -71,35 +72,35 @@
             <!-- Previous Button -->
             <ImageButton
                 android:id="@+id/btnPrevious" 
-                android:src="@drawable/btn_previous"
+                app:srcCompat="@drawable/btn_previous"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"/>
             <!-- Backward Button -->
             <ImageButton 
                 android:id="@+id/btnBackward"
-                android:src="@drawable/btn_backward"
+                app:srcCompat="@drawable/btn_backward"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"/>
             <!-- Play Button -->
             <ImageButton 
                 android:id="@+id/btnPlay"
-                android:src="@drawable/btn_play"
+                app:srcCompat="@drawable/btn_play"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"/>
             <!-- Forward Button -->
             <ImageButton 
                 android:id="@+id/btnForward"
-                android:src="@drawable/btn_forward"
+                app:srcCompat="@drawable/btn_forward"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"/>
             <!-- Next Button -->
             <ImageButton 
                 android:id="@+id/btnNext"
-                android:src="@drawable/btn_next"
+                app:srcCompat="@drawable/btn_next"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"/>
@@ -160,7 +161,7 @@
             android:id="@+id/btnRepeat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/btn_repeat"
+            app:srcCompat="@drawable/btn_repeat"
             android:layout_marginRight="5dp"
             android:background="@null"/>
         
@@ -169,7 +170,7 @@
             android:id="@+id/btnShuffle" 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/btn_shuffle"
+            app:srcCompat="@drawable/btn_shuffle"
             android:layout_marginLeft="5dp"
             android:background="@null"/>
     </LinearLayout>

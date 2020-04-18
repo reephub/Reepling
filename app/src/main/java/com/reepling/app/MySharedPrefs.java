@@ -3,6 +3,7 @@ package com.reepling.app;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 /**
  * Created by Michaël on 24/03/2018.
@@ -54,9 +55,9 @@ public class MySharedPrefs {
         mSharedPrefs = PreferenceManager.getDefaultSharedPreferences( context );
         themeId = mSharedPrefs.getInt( SHARED_PREFS_KEY_USER_THEME, 0);
 
+        Log.e(TAG,  "getThemeId() - themeId is  : " + themeId);
+
         return  themeId;
-
     }
-
 
 }

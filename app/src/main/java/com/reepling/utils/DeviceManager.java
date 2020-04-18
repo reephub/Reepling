@@ -1,7 +1,6 @@
 package com.reepling.utils;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -14,14 +13,15 @@ import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
 import android.os.Environment;
 import android.os.StatFs;
-import android.support.v4.app.ActivityCompat;
+import androidx.core.app.ActivityCompat;
 import android.telephony.TelephonyManager;
 import android.text.format.Formatter;
 import android.util.Log;
 
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.reepling.R;
-import com.reepling.app.MyApplication;
+import com.reepling.app.ReeplingApplication;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
@@ -252,7 +252,7 @@ public class DeviceManager {
 
 
     public static String getDeviceIMEI( Context context) {
-        TelephonyManager telephonyManager = (TelephonyManager) new MyApplication().getAppContext().getSystemService(Context.TELEPHONY_SERVICE);
+        TelephonyManager telephonyManager = (TelephonyManager) new ReeplingApplication().getAppContext().getSystemService(Context.TELEPHONY_SERVICE);
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -272,7 +272,7 @@ public class DeviceManager {
      * @return
      */
     public static boolean isConnected(Context context){
-        ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(Activity.CONNECTIVITY_SERVICE);
+        ConnectivityManager connMgr = (ConnectivityManager) context.getSystemService(AppCompatActivity.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected())
             return true;

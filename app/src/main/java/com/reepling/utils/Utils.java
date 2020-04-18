@@ -2,12 +2,12 @@ package com.reepling.utils;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.reepling.R;
 import com.reepling.app.MySharedPrefs;
 
@@ -20,13 +20,14 @@ public class Utils {
 
     private static final String TAG = Utils.class.getSimpleName();
 
-    public Utils() {}
+    public Utils() {
+    }
 
-    public static  void showActionInToast(Context context, String textToShow){
+    public static void showActionInToast(Context context, String textToShow) {
         Toast.makeText(context, textToShow, Toast.LENGTH_SHORT).show();
     }
 
-    public static void showActionInSnackBar(Context context, View view, String message, SnackBarType type){
+    public static void showActionInSnackBar(Context context, View view, String message, SnackBarType type) {
         // create instance
         Snackbar snackBar = Snackbar.make(view, message, Snackbar.LENGTH_LONG);
 
@@ -49,9 +50,9 @@ public class Utils {
         View snackBarView = snackBar.getView();
 
         // change snackbar text color
-        int snackBarTextId = android.support.design.R.id.snackbar_text;
+        int snackBarTextId = com.google.android.material.R.id.snackbar_text;
         TextView textView = (TextView) snackBarView.findViewById(snackBarTextId);
-        switch (type){
+        switch (type) {
             case NORMAL:
                 // set action button color
                 textView.setTextColor(context.getResources().getColor(R.color.white));
@@ -100,25 +101,26 @@ public class Utils {
      * Function to convert milliseconds time to
      * Timer Format
      * Hours:Minutes:Seconds
-     * */
-    public String milliSecondsToTimer(long milliseconds){
+     */
+    public String milliSecondsToTimer(long milliseconds) {
         String finalTimerString = "";
         String secondsString = "";
 
         // Convert total duration into time
-        int hours = (int)( milliseconds / (1000*60*60));
-        int minutes = (int)(milliseconds % (1000*60*60)) / (1000*60);
-        int seconds = (int) ((milliseconds % (1000*60*60)) % (1000*60) / 1000);
+        int hours = (int) (milliseconds / (1000 * 60 * 60));
+        int minutes = (int) (milliseconds % (1000 * 60 * 60)) / (1000 * 60);
+        int seconds = (int) ((milliseconds % (1000 * 60 * 60)) % (1000 * 60) / 1000);
         // Add hours if there
-        if(hours > 0){
+        if (hours > 0) {
             finalTimerString = hours + ":";
         }
 
         // Prepending 0 to seconds if it is one digit
-        if(seconds < 10){
+        if (seconds < 10) {
             secondsString = "0" + seconds;
-        }else{
-            secondsString = "" + seconds;}
+        } else {
+            secondsString = "" + seconds;
+        }
 
         finalTimerString = finalTimerString + minutes + ":" + secondsString;
 
@@ -128,17 +130,18 @@ public class Utils {
 
     /**
      * Function to get Progress percentage
+     *
      * @param currentDuration
      * @param totalDuration
-     * */
-    public int getProgressPercentage(long currentDuration, long totalDuration){
+     */
+    public int getProgressPercentage(long currentDuration, long totalDuration) {
         Double percentage = (double) 0;
 
         long currentSeconds = (int) (currentDuration / 1000);
         long totalSeconds = (int) (totalDuration / 1000);
 
         // calculating percentage
-        percentage =(((double)currentSeconds)/totalSeconds)*100;
+        percentage = (((double) currentSeconds) / totalSeconds) * 100;
 
         // return percentage
         return percentage.intValue();
@@ -146,14 +149,14 @@ public class Utils {
 
     /**
      * Function to change progress to timer
-     * @param progress -
-     * @param totalDuration
-     * returns current duration in milliseconds
-     * */
+     *
+     * @param progress      -
+     * @param totalDuration returns current duration in milliseconds
+     */
     public int progressToTimer(int progress, int totalDuration) {
         int currentDuration = 0;
         totalDuration = (int) (totalDuration / 1000);
-        currentDuration = (int) ((((double)progress) / 100) * totalDuration);
+        currentDuration = (int) ((((double) progress) / 100) * totalDuration);
 
         // return current duration in milliseconds
         return currentDuration * 1000;
@@ -174,16 +177,20 @@ public class Utils {
     /**
      * Set the theme of the Activity, and restart it by creating a new Activity of the same type.
      */
-    public static void changeToTheme(AppCompatActivity activity, int theme)
-    {
+    public static void changeToTheme(AppCompatActivity activity, int theme) {
         sTheme = theme;
         activity.finish();
         activity.startActivity(new Intent(activity, activity.getClass()));
     }
-    /** Set the theme of the activity, according to the configuration. */
-    public static void onActivityCreateSetTheme(AppCompatActivity activity)
-    {
-        activity.setTheme(sTheme);
+
+    /**
+     * Set the theme of the activity, according to the configuration.
+     */
+    public static void onActivityCreateSetTheme(AppCompatActivity activity) {
+        if (-1 != sTheme)
+            activity.setTheme(sTheme);
+        else
+            activity.setTheme(MySharedPrefs.getUserTheme(activity));
         /*
         switch (sTheme)
         {
@@ -220,8 +227,8 @@ public class Utils {
         */
     }
 
-    public static void saveTheme( Context context, int themId ){
-        MySharedPrefs.setSharedPrefsKeyUserTheme( context, themId );
+    public static void saveTheme(Context context, int themId) {
+        MySharedPrefs.setSharedPrefsKeyUserTheme(context, themId);
     }
 
 }

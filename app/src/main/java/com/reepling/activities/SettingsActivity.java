@@ -5,8 +5,8 @@ import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
@@ -17,7 +17,7 @@ import android.widget.Switch;
 
 import com.reepling.R;
 import com.reepling.adapters.ColorAdapter;
-import com.reepling.app.MyAppCompatActivity;
+import com.reepling.app.BaseReeplingActivity;
 import com.reepling.app.MySharedPrefs;
 import com.reepling.model.ThemeItem;
 import com.reepling.utils.CompatibilityManagerUtils;
@@ -31,7 +31,8 @@ import butterknife.ButterKnife;
  * Created by Michaël on 06/03/2018.
  */
 
-public class SettingsActivity extends MyAppCompatActivity implements AdapterView.OnItemClickListener, CompoundButton.OnCheckedChangeListener {
+public class SettingsActivity extends BaseReeplingActivity
+        implements AdapterView.OnItemClickListener, CompoundButton.OnCheckedChangeListener {
 
     //TAG & Context
     private static final String TAG = SettingsActivity.class.getSimpleName();
@@ -44,8 +45,8 @@ public class SettingsActivity extends MyAppCompatActivity implements AdapterView
     @BindView(R.id.sw_night_mode)
     Switch swNightMode;
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
+    //@BindView(R.id.toolbar)
+    //Toolbar toolbar;
 
     public int[] colorPickerList;
     public int[] themePickerList;
@@ -67,21 +68,17 @@ public class SettingsActivity extends MyAppCompatActivity implements AdapterView
     };
 
     /** Called when the activity is first created. */
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
-        Log.e( TAG, "Before setContentView()" );
-        setContentView(R.layout.activity_settings);
-
+    protected final void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState, R.layout.activity_settings);
 
         mContext = this;
         ButterKnife.bind(this);
 
-        setSupportActionBar(toolbar);
+        /*setSupportActionBar(toolbar);
         // toolbar fancy stuff
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);*/
 
         setListener();
 
