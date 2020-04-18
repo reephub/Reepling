@@ -23,7 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.reepling.R;
 import com.reepling.adapters.MoviesAdapter;
-import com.reepling.model.Movie;
+import com.reepling.data.remote.model.Movie;
 import com.reepling.utils.ActivityLauncher;
 import com.reepling.utils.Dummies;
 import com.reepling.views.MyDividerItemDecoration;

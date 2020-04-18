@@ -1,7 +1,6 @@
 package com.reepling.activities;
 
 import android.os.Bundle;
-
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -14,17 +13,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.reepling.R;
+import com.reepling.data.local.model.User;
+import com.reepling.data.repository.ReeplingRepository;
 import com.reepling.utils.ActivityLauncher;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.reactivex.SingleObserver;
+import io.reactivex.disposables.Disposable;
 
 /**
  * Created by Michaël on 08/02/2018.
@@ -54,6 +56,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private ActivityLauncher mActivityLauncher;
 
+    private ReeplingRepository repository;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,20 +68,21 @@ public class LoginActivity extends AppCompatActivity {
         inputEmail.addTextChangedListener(new MyTextWatcher(inputEmail));
         inputPassword.addTextChangedListener(new MyTextWatcher(inputPassword));
 
+        repository = new ReeplingRepository(this);
+
         mActivityLauncher = new ActivityLauncher(this);
     }
 
     @OnClick(R.id.btn_connect)
-    public void OnButtonConnectClick(View view){
+    public void OnButtonConnectClick(View view) {
         Log.i(TAG, "Connection clicked successfully");
 
         try {
-            InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+            InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
             if (imm != null) {
                 imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
             }
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.getMessage();
         }
 
@@ -85,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.txt_sign_in_request)
-    public void OnTextViewSignInRequestClick(View view){
+    public void OnTextViewSignInRequestClick(View view) {
         Log.i(TAG, "Sign In message clicked successfully");
 
         mActivityLauncher.AppCompatActivity(this, SignUpActivity.class);
@@ -105,6 +110,9 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         Toast.makeText(getApplicationContext(), "Thank You!", Toast.LENGTH_SHORT).show();
+
+        logUser();
+
     }
 
 
@@ -145,11 +153,37 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
+    public void logUser() {
+
+        String login = inputEmail.getText().toString();
+        String password = inputPassword.getText().toString();
+
+        repository.getUser(login, password)
+                .subscribe(new SingleObserver<User>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onSuccess(User user) {
+                        Log.e(TAG, "User does exist log him");
+
+                        mActivityLauncher.AppCompatActivity(LoginActivity.this, MainActivity.class);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace();
+                    }
+                });
+    }
+
     private class MyTextWatcher implements TextWatcher {
 
         private View view;
 
-        private MyTextWatcher(View view){
+        private MyTextWatcher(View view) {
             this.view = view;
         }
 
@@ -165,7 +199,7 @@ public class LoginActivity extends AppCompatActivity {
 
         @Override
         public void afterTextChanged(Editable sEditable) {
-            switch (view.getId()){
+            switch (view.getId()) {
                 case R.id.input_email:
                     validateEmail();
                     break;

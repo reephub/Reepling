@@ -10,7 +10,15 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
-import com.reepling.R;
+import com.reepling.data.local.ReeplingDatabase;
+import com.reepling.data.local.dao.UserDao;
+import com.reepling.data.local.model.User;
+import com.reepling.data.repository.ReeplingRepository;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
 
 
 /**
@@ -26,6 +34,7 @@ public class ReeplingApplication extends Application {
 
     private boolean isNightModeEnabled = false;
 
+    ReeplingRepository reeplingRepository;
 
     public ReeplingApplication() {
         Log.i(TAG, "Construct de MyApplication");
@@ -41,13 +50,6 @@ public class ReeplingApplication extends Application {
 
     @Override
     public void onCreate() {
-        //Init fabric stuff
-//        Fabric.with(this,  new Crashlytics());
-//        final Fabric fabric = new Fabric.Builder(this)
-//                .kits(new Answers(), new Crashlytics())
-//                .debuggable(true)
-//                .build();
-//        Fabric.with(fabric);
 
         //Firebase crashlytics initialization
         FirebaseCrashlytics crashlytics = FirebaseCrashlytics.getInstance();
@@ -58,16 +60,11 @@ public class ReeplingApplication extends Application {
 
         context = this;
 
-        // Old initialization of google ad mob
-//        MobileAds.initialize(this, getString(R.string.admob_app_id));
-
-
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
             public void onInitializationComplete(InitializationStatus initializationStatus) {
             }
         });
-
 
         // We load the Night Mode state here
         this.isNightModeEnabled = MySharedPrefs.getSharedPrefs(this).getBoolean("NIGHT_MODE", false);
@@ -75,6 +72,8 @@ public class ReeplingApplication extends Application {
         Log.e(TAG, "Set Theme");
         setTheme(MySharedPrefs.getUserTheme(context));
 
+        reeplingRepository = new ReeplingRepository(this);
+        reeplingRepository.loadUsersInDatabase();
     }
 
     public static synchronized ReeplingApplication getInstance() {
@@ -95,6 +94,4 @@ public class ReeplingApplication extends Application {
     public void setIsNightModeEnabled(boolean isNightModeEnabled) {
         this.isNightModeEnabled = isNightModeEnabled;
     }
-
-
 }

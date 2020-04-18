@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.reepling.R;
-import com.reepling.model.Movie;
+import com.reepling.data.remote.model.Movie;
 
 import java.util.ArrayList;
 import java.util.List;

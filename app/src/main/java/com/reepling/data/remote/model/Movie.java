@@ -1,4 +1,4 @@
-package com.reepling.model;
+package com.reepling.data.remote.model;
 
 /**
  * Created by michael on 25/01/2016.

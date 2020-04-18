@@ -61,7 +61,8 @@ public class SignUpActivity extends BaseReeplingActivity {
     @BindView(R.id.input_layout_confirm_password)
     TextInputLayout inputLayoutConfirmPassword;
 
-    @BindView(R.id.txt_sign_up_request) TextView textViewSignUp;
+    @BindView(R.id.txt_sign_up_request)
+    TextView textViewSignUp;
     @BindView(R.id.checkbox_sign_up)
     AppCompatCheckBox cbSignUp;
 
@@ -72,12 +73,8 @@ public class SignUpActivity extends BaseReeplingActivity {
     @BindView(R.id.btn_cancel) Button btnCancel;
 
 
-    private ActivityLauncher mActivityLauncher;
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_up);
+    protected final  void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState, R.layout.activity_sign_up);
 
         ButterKnife.bind(this);
 
