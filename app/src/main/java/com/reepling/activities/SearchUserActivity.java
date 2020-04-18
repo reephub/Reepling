@@ -38,7 +38,8 @@ import butterknife.ButterKnife;
  * Created by Michaël on 08/02/2018.
  */
 
-public class SearchUserActivity extends AppCompatActivity implements MoviesAdapter.MovieAdapterListener {
+public class SearchUserActivity extends AppCompatActivity
+        implements MoviesAdapter.MovieAdapterListener {
 
     private static final String TAG = SearchUserActivity.class.getSimpleName();
 

@@ -2,12 +2,11 @@ package com.reepling.activities;
 
 import android.content.Context;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
 
 import com.bumptech.glide.Glide;
 import com.reepling.R;
@@ -22,70 +21,64 @@ import butterknife.ButterKnife;
 
 public class UserActivity extends BaseReeplingActivity {
 
-     private static final String TAG = UserActivity.class.getSimpleName();
+    private static final String TAG = UserActivity.class.getSimpleName();
 
-     //Views
+    //Views
     @BindView(R.id.iv_user_profile)
-     ImageView ivUserImage;
+    ImageView ivUserImage;
 
     @BindView(R.id.tv_user_name)
     TextView tvUserName;
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-
-     //Const
+    //Const
     public static final String BUNDLE_USER_NAME = "user_name";
     public static final String BUNDLE_USER_FIRST_NAME = "user_first_name";
     public static final String BUNDLE_USER_PROFILE_IMAGE = "user_profile_image";
 
-    private Context mContext;
+    String separator = " / ";
 
     private Bundle mExtras;
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user);
+    private String mUserName;
+    private String mUserFirstName;
+    private String mUserProfileImageURL;
+
+
+    protected final void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState, R.layout.activity_user);
+
+        getBundle();
 
         mContext = this;
 
         ButterKnife.bind(this);
 
-        setSupportActionBar(toolbar);
-        // toolbar fancy stuff
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-
-        getBundle();
+        displayData();
     }
 
-    private void getBundle(){
-        mExtras  = getIntent().getExtras();
+    private void getBundle() {
+        mExtras = getIntent().getExtras();
 
-        if (null == mExtras){
+        if (null == mExtras) {
             Log.e(TAG, "Bundle is null");
             return;
         }
-
-        String name, firstname, url = "";
-        String separator = " / ";
 
         Log.i(TAG, "Bundle has a value\n"
                 + "Name : " + mExtras.getString(BUNDLE_USER_NAME) + "\n"
                 + "First Name : " + mExtras.getString(BUNDLE_USER_FIRST_NAME) + "\n"
                 + "URL : " + mExtras.getString(BUNDLE_USER_PROFILE_IMAGE) + "\n");
 
-        name = mExtras.getString(BUNDLE_USER_NAME);
-        firstname = mExtras.getString(BUNDLE_USER_FIRST_NAME);
-        url = mExtras.getString(BUNDLE_USER_PROFILE_IMAGE);
+        mUserName = mExtras.getString(BUNDLE_USER_NAME);
+        mUserFirstName = mExtras.getString(BUNDLE_USER_FIRST_NAME);
+        mUserProfileImageURL = mExtras.getString(BUNDLE_USER_PROFILE_IMAGE);
+    }
 
-
-        tvUserName.setText( name /*+ separator + firstname*/ );
+    private void displayData() {
+        tvUserName.setText(mUserName);
 
         Glide.with(this)
-                .load(url)
+                .load(mUserProfileImageURL)
                 .into(ivUserImage);
-
     }
 }

@@ -227,6 +227,14 @@ public class Utils {
         */
     }
 
+    public static void onActivityCreateSetTheme(AppCompatActivity activity, int theme) {
+        sTheme = theme;
+        if (-1 != sTheme)
+            activity.setTheme(sTheme);
+        else
+            activity.setTheme(MySharedPrefs.getUserTheme(activity));
+    }
+
     public static void saveTheme(Context context, int themId) {
         MySharedPrefs.setSharedPrefsKeyUserTheme(context, themId);
     }

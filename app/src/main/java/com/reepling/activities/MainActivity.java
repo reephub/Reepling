@@ -1,7 +1,6 @@
 package com.reepling.activities;
 
 import android.os.Bundle;
-
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -40,13 +39,10 @@ public class MainActivity extends BaseReeplingActivity {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    private ActivityLauncher mActivityLauncher;
+    protected final void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState, R.layout.activity_main);
 
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        mContext = this;
 
         ButterKnife.bind(this);
 
@@ -55,14 +51,13 @@ public class MainActivity extends BaseReeplingActivity {
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.app_name);
 
-        mActivityLauncher = new ActivityLauncher(this);
 
         mTabLayout.setupWithViewPager(mViewPager);
         setupViewPager(mViewPager);
     }
 
 
-    private void setupViewPager(ViewPager viewPager){
+    private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         adapter.addFragment(new CreationFragment(), getApplicationContext().getResources().getString(R.string.tabs_text_creation));
@@ -72,24 +67,6 @@ public class MainActivity extends BaseReeplingActivity {
         viewPager.setAdapter(adapter);
     }
 
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-
-        /*
-         * Make the image clickable because it's a custom toolbar
-         */
-        final MenuItem profileUserImageItem = menu.findItem(R.id.action_user);
-
-        ConstraintLayout rootView =  (ConstraintLayout) MenuItemCompat.getActionView(profileUserImageItem);
-
-        rootView.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                MainActivity.this.onOptionsItemSelected(profileUserImageItem);
-            }
-        });
-
-        return super.onPrepareOptionsMenu(menu);
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -106,9 +83,9 @@ public class MainActivity extends BaseReeplingActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        Log.e(TAG,"Id clicked : " + id);
+        Log.e(TAG, "Id clicked : " + id);
 
-        switch (id){
+        switch (id) {
             case R.id.action_search:
                 Log.i(TAG, "Search icon clicked");
                 Utils.showActionInToast(this, "Search icon clicked");
@@ -121,10 +98,28 @@ public class MainActivity extends BaseReeplingActivity {
                 mActivityLauncher.AppCompatActivity(this, ProfileActivity.class);
                 break;
 
-                default:
-                    return super.onOptionsItemSelected( item );
+            default:
+                return super.onOptionsItemSelected(item);
         }
         return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+
+        // Make the image clickable because it's a custom toolbar
+        final MenuItem profileUserImageItem = menu.findItem(R.id.action_user);
+
+        ConstraintLayout rootView = (ConstraintLayout) MenuItemCompat.getActionView(profileUserImageItem);
+
+        rootView.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                MainActivity.this.onOptionsItemSelected(profileUserImageItem);
+            }
+        });
+
+
+        return super.onPrepareOptionsMenu(menu);
     }
 
 }

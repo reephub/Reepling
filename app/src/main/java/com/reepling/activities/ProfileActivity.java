@@ -1,5 +1,6 @@
 package com.reepling.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 
 import com.reepling.R;
+import com.reepling.app.BaseReeplingActivity;
 import com.reepling.utils.ActivityLauncher;
 import com.reepling.utils.Utils;
 
@@ -26,7 +28,7 @@ import butterknife.OnClick;
  * Created by Michaël on 08/02/2018.
  */
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileActivity extends BaseReeplingActivity {
 
     private static final String TAG = ProfileActivity.class.getSimpleName();
 
@@ -54,29 +56,21 @@ public class ProfileActivity extends AppCompatActivity {
     @BindView(R.id.tv_offer_type)
     TextView tvOfferType;
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
 
-    private Context mContext;
-
-    private ActivityLauncher mActivityLauncher;
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile);
-
-        mContext = this;
+    @SuppressLint("MissingSuperCall")
+    protected final void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState, R.layout.activity_profile);
 
         ButterKnife.bind(this);
 
-        setSupportActionBar(toolbar);
-        // toolbar fancy stuff
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mContext = this;
+
+
+//        setSupportActionBar(toolbar);
+//         toolbar fancy stuff
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-
-        mActivityLauncher = new ActivityLauncher(mContext);
-
+//
         getStatistics();
     }
 

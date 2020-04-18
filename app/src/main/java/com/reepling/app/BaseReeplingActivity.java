@@ -1,13 +1,25 @@
 package com.reepling.app;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.view.MenuItemCompat;
 
 import com.reepling.R;
+import com.reepling.activities.MainActivity;
+import com.reepling.activities.ProfileActivity;
+import com.reepling.activities.SearchUserActivity;
+import com.reepling.activities.TransitionActivity;
+import com.reepling.utils.ActivityLauncher;
 import com.reepling.utils.Utils;
 
 /**
@@ -17,7 +29,12 @@ import com.reepling.utils.Utils;
 public abstract class BaseReeplingActivity extends AppCompatActivity {
 
     private static final String TAG = BaseReeplingActivity.class.getSimpleName();
+    protected Activity mActivity;
+    protected Context mContext;
 
+    Toolbar toolbar;
+
+    protected ActivityLauncher mActivityLauncher;
 
     /////////////////////////////////////
     //
@@ -86,23 +103,40 @@ public abstract class BaseReeplingActivity extends AppCompatActivity {
     /**
      * Override AppCompat's onCreate method in order to set toolbar with user theme
      * IMPORTANT : in inherited class declared onCreate following this :
-     *      protected final void onCreate(Bundle savedInstanceState) { }
-     * 
+     * protected final void onCreate(Bundle savedInstanceState) {
+     * super.onCreate(savedInstanceState, R.layout.some_layout);
+     * }
+     *
      * @param savedInstanceState
      * @param layoutId
      */
     protected final void onCreate(Bundle savedInstanceState, int layoutId) {
         super.onCreate(savedInstanceState);
 
-        Log.e(TAG, "onCreate() -- Shared theme id -> " + MySharedPrefs.getUserTheme(this));
+        Log.e(TAG, "onCreate() -- Shared theme id ->");
         MySharedPrefs.getUserTheme(this);
-        Utils.onActivityCreateSetTheme(this);
+        // TODO: modify this properly
+        Utils.onActivityCreateSetTheme(this, MySharedPrefs.getUserTheme(this));
 
         setContentView(layoutId);
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(myToolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mContext = this;
+        mActivity = this;
+        mActivityLauncher = new ActivityLauncher(mContext);
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        // If transition activity don't show return arrow in toolbar
+        if (!(this instanceof TransitionActivity
+                || this instanceof  MainActivity)) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
+        if (this instanceof TransitionActivity) {
+            getSupportActionBar().setTitle("Transition activity");
+        }
+
     }
 
     protected void onStartNewActivity() {

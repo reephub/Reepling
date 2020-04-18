@@ -9,8 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_above="@+id/layout_listening_media_player">
+        android:orientation="vertical">
 
         <!--Toolbar Layout-->
         <include layout="@layout/toolbar_user_profile" />
@@ -21,13 +20,5 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </LinearLayout>
-
-    <!--Layout listening player-->
-    <include
-        android:id="@+id/layout_listening_media_player"
-        layout="@layout/layout_listening_media_player"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>
