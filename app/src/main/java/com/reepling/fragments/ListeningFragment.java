@@ -441,7 +441,7 @@ public class ListeningFragment extends Fragment implements ListeningSongsAdapter
 
             // Updating progress bar
             int progress = (int) (utils.getProgressPercentage(currentDuration, totalDuration));
-            //Log.d("Progress", ""+progress);
+            //Log.i("Progress", ""+progress);
             songProgressBar.setProgress(progress);
 
             // Running this thread after 100 milliseconds

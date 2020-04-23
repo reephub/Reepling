@@ -5,22 +5,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.view.MenuItemCompat;
 
 import com.reepling.R;
 import com.reepling.activities.MainActivity;
-import com.reepling.activities.ProfileActivity;
-import com.reepling.activities.SearchUserActivity;
 import com.reepling.activities.TransitionActivity;
+import com.reepling.data.local.model.User;
 import com.reepling.utils.ActivityLauncher;
 import com.reepling.utils.Utils;
+
+import org.parceler.Parcels;
 
 /**
  * Created by Michaël on 24/03/2018.
@@ -36,6 +32,9 @@ public abstract class BaseReeplingActivity extends AppCompatActivity {
 
     protected ActivityLauncher mActivityLauncher;
 
+    protected User user;
+    public static final String BUNDLE_CURRENT_USER = "CURRENT_USER";
+
     /////////////////////////////////////
     //
     // OVERRIDE
@@ -50,12 +49,15 @@ public abstract class BaseReeplingActivity extends AppCompatActivity {
     @Override
     public void startActivity(Intent intent) {
         super.startActivity(intent);
+        Log.e(TAG, "startActivity()");
         onStartNewActivity();
     }
 
     @Override
     public void startActivity(Intent intent, Bundle options) {
         super.startActivity(intent, options);
+
+        Log.e(TAG, "startActivity(intent, options)");
         onStartNewActivity();
     }
 
@@ -85,6 +87,7 @@ public abstract class BaseReeplingActivity extends AppCompatActivity {
     @Override
     public void finish() {
         super.finish();
+        Log.e(TAG, "finish()");
         onLeaveThisActivity();
     }
     /////////////////////////////////////
@@ -112,24 +115,28 @@ public abstract class BaseReeplingActivity extends AppCompatActivity {
      */
     protected final void onCreate(Bundle savedInstanceState, int layoutId) {
         super.onCreate(savedInstanceState);
+        Log.e(TAG, "onCreate()");
 
-        Log.e(TAG, "onCreate() -- Shared theme id ->");
         MySharedPrefs.getUserTheme(this);
         // TODO: modify this properly
         Utils.onActivityCreateSetTheme(this, MySharedPrefs.getUserTheme(this));
 
         setContentView(layoutId);
 
+        //Init
         mContext = this;
         mActivity = this;
         mActivityLauncher = new ActivityLauncher(mContext);
 
+//        if (!(this instanceof SplashActivity)){
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+//        }
+
 
         // If transition activity don't show return arrow in toolbar
         if (!(this instanceof TransitionActivity
-                || this instanceof  MainActivity)) {
+                || this instanceof MainActivity)) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 

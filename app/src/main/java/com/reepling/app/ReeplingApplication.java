@@ -10,15 +10,8 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
-import com.reepling.data.local.ReeplingDatabase;
-import com.reepling.data.local.dao.UserDao;
 import com.reepling.data.local.model.User;
 import com.reepling.data.repository.ReeplingRepository;
-
-import java.util.ArrayList;
-import java.util.List;
-
-
 
 
 /**
@@ -35,6 +28,7 @@ public class ReeplingApplication extends Application {
     private boolean isNightModeEnabled = false;
 
     ReeplingRepository reeplingRepository;
+    public User currentUser;
 
     public ReeplingApplication() {
         Log.i(TAG, "Construct de MyApplication");
@@ -86,6 +80,13 @@ public class ReeplingApplication extends Application {
         return context;
     }
 
+
+    public User getCurrentUser() {
+        if (null != currentUser)
+            return currentUser;
+
+        return null;
+    }
 
     public boolean isNightModeEnabled() {
         return isNightModeEnabled;

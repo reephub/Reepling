@@ -95,7 +95,7 @@ public class AdMobActivity extends AppCompatActivity {
         if (mInterstitialAd.isLoaded()) {
             mInterstitialAd.show();
         } else {
-            Log.d("TAG", "The interstitial wasn't loaded yet.");
+            Log.e("TAG", "The interstitial wasn't loaded yet.");
         }
     }
 }

@@ -26,6 +26,14 @@ public interface UserDao {
     @Query("SELECT * FROM users WHERE login LIKE :login AND password LIKE :password")
     Single<User> getUser(String login, String password);
 
+
+    @Query("SELECT * FROM users WHERE id LIKE :userIid")
+    Single<User> getUserById(int userIid);
+
+
+    @Query("SELECT * FROM users WHERE username LIKE :username")
+    Single<User> getUserByUsername(String username);
+
     @Query("SELECT * FROM users WHERE id IN (:userIds)")
     Single<List<User>> loadAllByIds(int[] userIds);
 

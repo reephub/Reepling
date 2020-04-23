@@ -5,15 +5,19 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.reepling.app.ReeplingApplication;
 import com.reepling.data.local.ReeplingDatabase;
 import com.reepling.data.local.dao.UserDao;
 import com.reepling.data.local.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import io.reactivex.Single;
+import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableCompletableObserver;
 import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
@@ -51,6 +55,9 @@ public class ReeplingRepository {
                             // Create users
                             List<User> preparedList = prepareUsers();
 
+                            // TODO : set stats for users
+                            // preparedList = generateRandomLikesAndRecords(preparedList);
+
                             db.userDao()
                                     .insertAll(preparedList)
                                     .subscribeOn(Schedulers.io())
@@ -68,11 +75,6 @@ public class ReeplingRepository {
                                     });
                         } else {
                             Log.e(TAG, "Users table is not empty");
-
-                            for (User user : users) {
-                                Log.e(TAG, user.toString());
-                            }
-
                         }
                     }
 
@@ -138,6 +140,17 @@ public class ReeplingRepository {
         return preparedUserList;
     }
 
+    public List<User> generateRandomLikesAndRecords(List<User> userList){
+        List<User> list = userList;
+
+        for (User user : userList){
+
+        }
+
+        return list;
+
+    }
+
     public Single<User> getUser(String login, String password) {
         String encodedPassword = User.encodePassword(password);
 
@@ -147,4 +160,33 @@ public class ReeplingRepository {
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
+    public Single<User> getUserByUsername(String username) {
+        return db.userDao()
+                .getUserByUsername(username)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    public void saveCurrentUserSession(String username) {
+        getUserByUsername(username)
+                .subscribe(new SingleObserver<User>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onSuccess(User user) {
+                        Log.i(TAG, "onSuccess()");
+                        Log.i(TAG, "user --> " + user.toString());
+
+                        ReeplingApplication.getInstance().currentUser = user;
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.e(TAG, Objects.requireNonNull(e.getMessage()));
+                    }
+                });
+    }
 }

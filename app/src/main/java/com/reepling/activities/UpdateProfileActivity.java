@@ -8,15 +8,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.provider.Settings;
-import androidx.annotation.Nullable;
-import com.google.android.material.textfield.TextInputLayout;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -24,6 +19,12 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.material.textfield.TextInputLayout;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -35,6 +36,8 @@ import com.karumi.dexter.listener.PermissionRequestErrorListener;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.karumi.dexter.listener.single.PermissionListener;
 import com.reepling.R;
+import com.reepling.app.ReeplingApplication;
+import com.reepling.data.local.model.User;
 
 import java.util.List;
 
@@ -54,10 +57,14 @@ public class UpdateProfileActivity extends AppCompatActivity {
     @BindView(R.id.btn_update_user_image)
     ImageButton buttonUpdateUserImage;
 
-    @BindView(R.id.input_name) EditText inputName;
-    @BindView(R.id.input_password) EditText inputPassword;
-    @BindView(R.id.input_confirm_password) EditText inputConfirmPassword;
-    @BindView(R.id.input_email) EditText inputEmail;
+    @BindView(R.id.input_name)
+    EditText inputName;
+    @BindView(R.id.input_password)
+    EditText inputPassword;
+    @BindView(R.id.input_confirm_password)
+    EditText inputConfirmPassword;
+    @BindView(R.id.input_email)
+    EditText inputEmail;
 
     @BindView(R.id.input_layout_name)
     TextInputLayout inputLayoutName;
@@ -74,7 +81,6 @@ public class UpdateProfileActivity extends AppCompatActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-
 
     private Context mContext;
 
@@ -93,19 +99,23 @@ public class UpdateProfileActivity extends AppCompatActivity {
 
         mContext = this;
 
-        ButterKnife.bind( this);
+        ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
         // toolbar fancy stuff
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        getUserName();
-
+        if (null != ReeplingApplication.getInstance().getCurrentUser())
+            displayUserData(ReeplingApplication.getInstance().getCurrentUser());
+        else
+            Log.e(TAG, "Application user not register. Cannot user display data");
     }
 
-    public void getUserName(){
-        inputName.setText("Michael Lawrence");
+    public void displayUserData(User user) {
+        String username = user.getFirstName() + " " + user.getLastName();
+        inputName.setText(username);
+        inputEmail.setText(user.getLogin());
     }
 
     @OnClick(R.id.btn_update_user_image)
@@ -382,13 +392,11 @@ public class UpdateProfileActivity extends AppCompatActivity {
     }
 
 
-
-
     private class MyTextWatcher implements TextWatcher {
 
         private View view;
 
-        private MyTextWatcher(View view){
+        private MyTextWatcher(View view) {
             this.view = view;
         }
 
@@ -404,15 +412,12 @@ public class UpdateProfileActivity extends AppCompatActivity {
 
         @Override
         public void afterTextChanged(Editable sEditable) {
-            switch (view.getId()){
+            switch (view.getId()) {
                 case R.id.input_email:
                     validateEmail();
                     break;
 
                 case R.id.input_password:
-                    validatePassword();
-                    break;
-
                 case R.id.input_confirm_password:
                     validatePassword();
                     break;

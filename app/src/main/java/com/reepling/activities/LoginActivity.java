@@ -1,5 +1,7 @@
 package com.reepling.activities;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -18,9 +20,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputLayout;
 import com.reepling.R;
+import com.reepling.app.BaseReeplingActivity;
+import com.reepling.app.MySharedPrefs;
 import com.reepling.data.local.model.User;
 import com.reepling.data.repository.ReeplingRepository;
 import com.reepling.utils.ActivityLauncher;
+
+import org.parceler.Parcels;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,6 +41,7 @@ import io.reactivex.disposables.Disposable;
 public class LoginActivity extends AppCompatActivity {
 
     private static final String TAG = LoginActivity.class.getSimpleName();
+    private Context mContext;
 
     @BindView(R.id.input_email)
     EditText inputEmail;
@@ -63,6 +70,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        mContext = this;
+
         ButterKnife.bind(this);
 
         inputEmail.addTextChangedListener(new MyTextWatcher(inputEmail));
@@ -74,7 +83,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.btn_connect)
-    public void OnButtonConnectClick(View view) {
+    public void OnButtonConnectClick() {
         Log.i(TAG, "Connection clicked successfully");
 
         try {
@@ -90,7 +99,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     @OnClick(R.id.txt_sign_in_request)
-    public void OnTextViewSignInRequestClick(View view) {
+    public void OnTextViewSignInRequestClick() {
         Log.i(TAG, "Sign In message clicked successfully");
 
         mActivityLauncher.AppCompatActivity(this, SignUpActivity.class);
@@ -109,7 +118,7 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
-        Toast.makeText(getApplicationContext(), "Thank You!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(mContext, "Thank You!", Toast.LENGTH_SHORT).show();
 
         logUser();
 
@@ -167,8 +176,12 @@ public class LoginActivity extends AppCompatActivity {
 
                     @Override
                     public void onSuccess(User user) {
-                        Log.e(TAG, "User does exist log him");
+                        Log.i(TAG, "Save user's username in sharedPrefs");
+                        MySharedPrefs.setSharedPrefsKeyConnectedUser(mContext, user);
 
+                        repository.saveCurrentUserSession(user.getUsername());
+
+                        Log.i(TAG, "User does exist log him");
                         mActivityLauncher.AppCompatActivity(LoginActivity.this, MainActivity.class);
                     }
 

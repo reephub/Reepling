@@ -84,6 +84,10 @@ dependencies {
     // Guava
     implementation "com.google.guava:guava:29.0-android"
 
+    // Parceler
+    implementation 'org.parceler:parceler-api:1.1.13'
+    annotationProcessor 'org.parceler:parceler:1.1.12'
+
     // Butter knife
     implementation 'com.jakewharton:butterknife:10.2.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'

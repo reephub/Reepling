@@ -14,12 +14,15 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 import com.reepling.R;
 import com.reepling.app.BaseReeplingActivity;
+import com.reepling.data.local.model.User;
 import com.reepling.fragments.CommunityFragment;
 import com.reepling.fragments.CreationFragment;
 import com.reepling.fragments.ListeningFragment;
 import com.reepling.fragments.adapter.ViewPagerAdapter;
 import com.reepling.utils.ActivityLauncher;
 import com.reepling.utils.Utils;
+
+import org.parceler.Parcels;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -83,7 +86,7 @@ public class MainActivity extends BaseReeplingActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        Log.e(TAG, "Id clicked : " + id);
+        Log.i(TAG, "Id clicked : " + id);
 
         switch (id) {
             case R.id.action_search:

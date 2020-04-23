@@ -1,12 +1,17 @@
 package com.reepling.data.local.model;
 
+import android.util.Log;
+
 import androidx.annotation.Nullable;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.google.common.hash.Hashing;
+
+import org.parceler.Parcel;
 
 import java.nio.charset.StandardCharsets;
 
@@ -14,11 +19,16 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import static androidx.room.ForeignKey.CASCADE;
+
 @Entity(tableName = "users")
 @Getter
 @Setter
 @ToString
+@Parcel
 public class User {
+
+    private static final String TAG = User.class.getSimpleName();
 
     @PrimaryKey(autoGenerate = true)
     public int id;
@@ -50,9 +60,18 @@ public class User {
     @ColumnInfo(name = "premium")
     public boolean isPremium = false;
 
+    public int statsId;
+
+    @Ignore
+    public User() {
+    }
 
 
     public User(String username, String firstName, String lastName, String phone, String login, String password, @Nullable String country, @Nullable boolean isPremium, boolean isAdmin) {
+
+        // TODO : Remove debug
+        Log.e(TAG, "TODO : Remove debug \nuser : " + username + ", login : " + login + ",password : " + password);
+
         setUsername(username);
         setFirstName(firstName);
         setLastName(lastName);
@@ -81,6 +100,4 @@ public class User {
         String sha3_256hex = bytesToHex(hashbytes);
         */
     }
-
-
 }

@@ -1,21 +1,20 @@
 package com.reepling.activities;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 
 import com.reepling.R;
 import com.reepling.app.BaseReeplingActivity;
-import com.reepling.utils.ActivityLauncher;
+import com.reepling.app.ReeplingApplication;
+import com.reepling.data.local.model.User;
 import com.reepling.utils.Utils;
 
 import java.util.Random;
@@ -31,6 +30,9 @@ import butterknife.OnClick;
 public class ProfileActivity extends BaseReeplingActivity {
 
     private static final String TAG = ProfileActivity.class.getSimpleName();
+
+    @BindView(R.id.tv_user_name)
+    TextView tvUsername;
 
     @BindView(R.id.btn_modify_app_settings)
     Button buttonModifyAppSettings;
@@ -56,6 +58,8 @@ public class ProfileActivity extends BaseReeplingActivity {
     @BindView(R.id.tv_offer_type)
     TextView tvOfferType;
 
+    private User user;
+
 
     @SuppressLint("MissingSuperCall")
     protected final void onCreate(@Nullable Bundle savedInstanceState) {
@@ -65,28 +69,40 @@ public class ProfileActivity extends BaseReeplingActivity {
 
         mContext = this;
 
+        user = ReeplingApplication.getInstance().getCurrentUser();
 
 //        setSupportActionBar(toolbar);
 //         toolbar fancy stuff
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-//
+
+        displayData();
+
+        //
         getStatistics();
     }
 
-    public void getStatistics(){
+    private void displayData() {
+        if (null != user) {
+            tvUsername.setText(user.lastName);
+        } else {
+            Log.e(TAG, "Cannot display data ! User is null");
+        }
+    }
+
+    public void getStatistics() {
         checkRecords();
         checkLikes();
     }
 
-    public void checkRecords(){
+    public void checkRecords() {
         Random r = new Random();
         int randomInt = r.nextInt(80 - 65) + 65;
 
         tvRecordsNumber.setText(randomInt + "");
     }
 
-    public void checkLikes(){
+    public void checkLikes() {
         Random r = new Random();
         int randomInt = r.nextInt(100 - 32) + 85;
 
@@ -114,7 +130,7 @@ public class ProfileActivity extends BaseReeplingActivity {
 
 
     @OnClick(R.id.btn_disconnect)
-    public void OnButtonDisconnectClick(View view){
+    public void OnButtonDisconnectClick(View view) {
 
         // 1. Instantiate an AlertDialog.Builder with its constructor
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -130,7 +146,7 @@ public class ProfileActivity extends BaseReeplingActivity {
                 finish();
                 mActivityLauncher.AppCompatActivity(mContext, LoginActivity.class);
 
-                Utils.showActionInToast( mContext, mContext.getResources().getString(R.string.disconnected) );
+                Utils.showActionInToast(mContext, mContext.getResources().getString(R.string.disconnected));
             }
         });
         builder.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
