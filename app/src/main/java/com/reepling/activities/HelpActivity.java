@@ -7,20 +7,31 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 
-import android.widget.Toast;
-
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.DexterError;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.PermissionRequestErrorListener;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.reepling.R;
 import com.reepling.utils.DeviceManager;
+
+import java.util.List;
 
 /**
  * Created by Michaël on 02/03/2018.
@@ -31,6 +42,7 @@ public class HelpActivity extends FragmentActivity implements LocationListener, 
     private static final String TAG = HelpActivity.class.getSimpleName();
 
     private GoogleMap mMap;
+    private SupportMapFragment mSupportMapFragment;
 
     private Location mLocation;
     private LocationManager mLocationManager;
@@ -41,12 +53,40 @@ public class HelpActivity extends FragmentActivity implements LocationListener, 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //show error dialog if GoolglePlayServices not available
+        if (!isGooglePlayServicesAvailable()) {
+            finish();
+        }
+
         setContentView(R.layout.activity_help);
 
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this);
+        Dexter.withActivity(this)
+                .withPermissions(
+                        Manifest.permission.ACCESS_COARSE_LOCATION,
+                        Manifest.permission.ACCESS_FINE_LOCATION)
+                .withListener(new MultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport report) {
+
+                        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+                        mSupportMapFragment = (SupportMapFragment) getSupportFragmentManager()
+                                .findFragmentById(R.id.map);
+                        mSupportMapFragment.getMapAsync(HelpActivity.this);
+
+                    }
+
+                    @Override
+                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
+
+                    }
+                })
+                .withErrorListener(new PermissionRequestErrorListener() {
+                    @Override
+                    public void onError(DexterError error) {
+
+                    }
+                }).check();
 
     }
 
@@ -64,31 +104,15 @@ public class HelpActivity extends FragmentActivity implements LocationListener, 
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+        setMapUISettings(mMap);
+        setLocationSettings();
 
-        mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-        mCriteria = new Criteria();
+    }
 
-        mProvider = mLocationManager.getBestProvider(mCriteria, true);
-        try {
-
-            mLocation = mLocationManager.getLastKnownLocation(mProvider);
-        } catch (SecurityException e) {
-            e.printStackTrace();
-        }
-
-        if (mLocation != null) {
-            onLocationChanged(mLocation);
-        }
-
-        try {
-
-            mLocationManager.requestLocationUpdates(mProvider, 20000, 0, this);
-        } catch (SecurityException e) {
-            e.printStackTrace();
-        }
+    public void setMapUISettings(GoogleMap googleMap) {
 
         // Add a marker in Sydney and move the camera
-        //LatLng sydney = new LatLng(-34, 151);
+        // LatLng sydney = new LatLng(-34, 151);
 
         mMap.setBuildingsEnabled(true);
         mMap.getUiSettings().setCompassEnabled(true);
@@ -108,6 +132,39 @@ public class HelpActivity extends FragmentActivity implements LocationListener, 
 
         //mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         //mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+    }
+
+    public void setLocationSettings() {
+
+        mLocationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        mCriteria = new Criteria();
+
+        mProvider = mLocationManager.getBestProvider(mCriteria, true);
+
+        try {
+            mLocation = mLocationManager.getLastKnownLocation(mProvider);
+        } catch (SecurityException e) {
+            e.printStackTrace();
+        }
+
+        if (mLocation != null) {
+            onLocationChanged(mLocation);
+        }
+
+        try {
+            mLocationManager.requestLocationUpdates(mProvider, 20000, 0, this);
+        } catch (SecurityException e) {
+            e.printStackTrace();
+        }
+    }
+    private boolean isGooglePlayServicesAvailable() {
+        int status = GooglePlayServicesUtil.isGooglePlayServicesAvailable(this);
+        if (ConnectionResult.SUCCESS == status) {
+            return true;
+        } else {
+            GooglePlayServicesUtil.getErrorDialog(status, this, 0).show();
+            return false;
+        }
     }
 
     @Override

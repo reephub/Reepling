@@ -36,6 +36,7 @@ import com.karumi.dexter.listener.PermissionRequestErrorListener;
 import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import com.karumi.dexter.listener.single.PermissionListener;
 import com.reepling.R;
+import com.reepling.app.BaseReeplingActivity;
 import com.reepling.app.ReeplingApplication;
 import com.reepling.data.local.model.User;
 
@@ -49,7 +50,7 @@ import butterknife.OnClick;
  * Created by Michaël on 08/02/2018.
  */
 
-public class UpdateProfileActivity extends AppCompatActivity {
+public class UpdateProfileActivity extends BaseReeplingActivity {
 
     private static final String TAG = UpdateProfileActivity.class.getSimpleName();
 
@@ -81,9 +82,6 @@ public class UpdateProfileActivity extends AppCompatActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-
-    private Context mContext;
-
 
     public final static int REQUEST_CAMERA = 1;
     public final static int REQUEST_OTHER = 2;
