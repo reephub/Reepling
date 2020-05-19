@@ -5,8 +5,6 @@ import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
@@ -59,15 +57,18 @@ public class SettingsActivity extends BaseReeplingActivity
      * A preference value change listener that updates the preference's summary
      * to reflect its new value.
      */
-    private static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener = new Preference.OnPreferenceChangeListener() {
-        @Override
-        public boolean onPreferenceChange(Preference preference, Object value) {
-            String stringValue = value.toString();
-            return true;
-        }
-    };
+    private static Preference.OnPreferenceChangeListener sBindPreferenceSummaryToValueListener =
+            new Preference.OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object value) {
+                    String stringValue = value.toString();
+                    return true;
+                }
+            };
 
-    /** Called when the activity is first created. */
+    /**
+     * Called when the activity is first created.
+     */
 
     protected final void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState, R.layout.activity_settings);
@@ -89,14 +90,14 @@ public class SettingsActivity extends BaseReeplingActivity
 
     }
 
-    public void setListener(){
-        gridView.setOnItemClickListener( this );
-        swNightMode.setOnCheckedChangeListener( this );
+    public void setListener() {
+        gridView.setOnItemClickListener(this);
+        swNightMode.setOnCheckedChangeListener(this);
     }
 
-    private void prepareData(){
+    private void prepareData() {
 
-        colorPickerList =  mContext.getResources().getIntArray( R.array.user_favorite_color );
+        colorPickerList = mContext.getResources().getIntArray(R.array.user_favorite_color);
 
         TypedArray ar = getResources().obtainTypedArray(R.array.themePicker);
         int length = ar.length();
@@ -105,9 +106,9 @@ public class SettingsActivity extends BaseReeplingActivity
             themePickerList[i] = ar.getResourceId(i, 0);
         ar.recycle();
 
-        mThemeItemList = new ThemeItem[ length ];
-        for ( int i = 0 ; i < length ;  i ++ ){
-            mThemeItemList[ i ] = new ThemeItem( colorPickerList [i], themePickerList [i] );
+        mThemeItemList = new ThemeItem[length];
+        for (int i = 0; i < length; i++) {
+            mThemeItemList[i] = new ThemeItem(colorPickerList[i], themePickerList[i]);
         }
 
     }
@@ -146,24 +147,24 @@ public class SettingsActivity extends BaseReeplingActivity
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-        final ThemeItem item = mThemeItemList[ position ];
+        final ThemeItem item = mThemeItemList[position];
 
-        Log.e( "OHOH",  item.getResourceThemeId() + "" );
+        Log.e("OHOH", item.getResourceThemeId() + "");
 
-        Utils.saveTheme( this, item.getResourceThemeId() );
+        Utils.saveTheme(this, item.getResourceThemeId());
         Utils.changeToTheme(this, item.getResourceThemeId());
 
     }
 
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-        Log.e( TAG, "switch check listener" );
+        Log.e(TAG, "switch check listener");
 
-        if ( !isChecked) {
+        if (!isChecked) {
             MySharedPrefs.setSharedPrefsKeyNightMode(this, false);
             swNightMode.setText(Html.fromHtml("<b><big>" + "Activer le thème sombre" + "</big></b>" + "<br />" +
                     "<small>" + "Désactivé" + "</small>" + "<br />"));
-        }else {
+        } else {
             MySharedPrefs.setSharedPrefsKeyNightMode(this, true);
             swNightMode.setText(Html.fromHtml("<b><big>" + "Activer le thème sombre" + "</big></b>" + "<br />" +
                     "<small>" + "Activé" + "</small>" + "<br />"));

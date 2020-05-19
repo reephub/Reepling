@@ -5,6 +5,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.reepling.app.MySharedPrefs;
 import com.reepling.app.ReeplingApplication;
 import com.reepling.data.local.ReeplingDatabase;
 import com.reepling.data.local.dao.UserDao;
@@ -140,10 +141,10 @@ public class ReeplingRepository {
         return preparedUserList;
     }
 
-    public List<User> generateRandomLikesAndRecords(List<User> userList){
+    public List<User> generateRandomLikesAndRecords(List<User> userList) {
         List<User> list = userList;
 
-        for (User user : userList){
+        for (User user : userList) {
 
         }
 
@@ -188,5 +189,10 @@ public class ReeplingRepository {
                         Log.e(TAG, Objects.requireNonNull(e.getMessage()));
                     }
                 });
+    }
+
+    public void closeUserSession() {
+        MySharedPrefs.deleteSharedPrefsKeyConnected(ReeplingApplication.getInstance().getAppContext());
+        ReeplingApplication.getInstance().currentUser = null;
     }
 }

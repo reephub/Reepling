@@ -81,4 +81,9 @@ public class MySharedPrefs {
         return username;
     }
 
+    public static void deleteSharedPrefsKeyConnected(Context context) {
+        mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+        mSharedPrefs.edit().putString(SHARED_PREFS_KEY_USER_CONNECTED, "").apply();
+    }
+
 }

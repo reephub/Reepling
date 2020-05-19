@@ -1,6 +1,7 @@
 package com.reepling.activities;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -90,10 +91,10 @@ public class UpdateProfileActivity extends BaseReeplingActivity {
 
     private Uri cameraImageUri;
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_update_profile);
+
+    @SuppressLint("MissingSuperCall")
+    protected final void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState, R.layout.activity_update_profile);
 
         mContext = this;
 

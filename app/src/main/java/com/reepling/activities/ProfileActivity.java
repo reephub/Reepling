@@ -15,6 +15,7 @@ import com.reepling.R;
 import com.reepling.app.BaseReeplingActivity;
 import com.reepling.app.ReeplingApplication;
 import com.reepling.data.local.model.User;
+import com.reepling.data.repository.ReeplingRepository;
 import com.reepling.utils.Utils;
 
 import java.util.Random;
@@ -142,6 +143,12 @@ public class ProfileActivity extends BaseReeplingActivity {
         // Add the buttons
         builder.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int id) {
+
+                // Disconnect user
+                ReeplingRepository repo = new ReeplingRepository(mContext);
+                repo.closeUserSession();
+
+
                 // User clicked OK button
                 finish();
                 mActivityLauncher.AppCompatActivity(mContext, LoginActivity.class);
